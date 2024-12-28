@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSatelliteRequest;
 use App\Http\Requests\UpdateSatelliteRequest;
+use App\Http\Resources\SatelliteResource;
 use App\Models\Satellite;
 
 class SatelliteController extends Controller
@@ -14,7 +15,7 @@ class SatelliteController extends Controller
      */
     public function index()
     {
-        return Satellite::all();
+        return SatelliteResource::collection(Satellite::all());
     }
 
     /**
@@ -38,7 +39,7 @@ class SatelliteController extends Controller
      */
     public function show(Satellite $satellite)
     {
-        //
+        return SatelliteResource::make($satellite);
     }
 
     /**

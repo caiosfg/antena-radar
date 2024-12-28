@@ -26,6 +26,7 @@ class SatelliteFactory extends Factory
             'category' => fake()->randomElement(['easy', 'medium', 'hard']),
             'start_date' => fake()->date('Y-m-d'),
             'end_date' => fake()->date('Y-m-d'),
+            'height' => fake()->randomDigitNotNull(),
         ];
     }
 }

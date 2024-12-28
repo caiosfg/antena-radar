@@ -25,6 +25,7 @@ class SatelliteResource extends JsonResource
             'category' => $this->category,
             'start_date' => $this->start_date,
             'end_date' => $this->end_date,
+            'height' => $this->height,
         ];
     }
 }

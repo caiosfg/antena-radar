@@ -11,7 +11,7 @@ class StoreSatelliteRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class StoreSatelliteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|min:10|max:100',
+            'description' => 'required|string|min:10|max:100',
+            'uf' => 'required|string|max:2',
+            'location' => 'required|string|min:10|max:100',
+            'height' => 'required|numeric|min:1',
         ];
     }
 }

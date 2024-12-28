@@ -36,20 +36,15 @@ class SatelliteController extends Controller
         return SatelliteResource::make($satellite);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Satellite $satellite)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(UpdateSatelliteRequest $request, Satellite $satellite)
     {
-        //
+        $satellite->update($request->validated());
+
+        return SatelliteResource::make($satellite);
     }
 
     /**

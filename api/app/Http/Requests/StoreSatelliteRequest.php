@@ -25,8 +25,13 @@ class StoreSatelliteRequest extends FormRequest
             'name' => 'required|string|min:10|max:100',
             'description' => 'required|string|min:10|max:100',
             'uf' => 'required|string|max:2',
+            'avatar' => 'nullable|string',
             'location' => 'required|string|min:10|max:100',
+            'active' => 'nullable|boolean',
+            'category' => 'nullable|string',
             'height' => 'required|numeric|min:1',
+            'start_date' => 'nullable|date',
+            'end_date' => 'nullable|date',
         ];
     }
 }

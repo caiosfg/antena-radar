@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSatelliteRequest;
 use App\Http\Requests\UpdateSatelliteRequest;
 use App\Models\Satellite;
@@ -13,7 +14,7 @@ class SatelliteController extends Controller
      */
     public function index()
     {
-        //
+        return Satellite::all();
     }
 
     /**

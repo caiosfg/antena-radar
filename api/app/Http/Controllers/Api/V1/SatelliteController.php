@@ -52,6 +52,8 @@ class SatelliteController extends Controller
      */
     public function destroy(Satellite $satellite)
     {
-        //
+        $satellite->delete();
+
+        return response()->noContent();
     }
 }

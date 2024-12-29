@@ -60,3 +60,16 @@
         </div>
     </div>
 </template>
+
+<script setup>
+import { onMounted } from "vue";
+import { allSatellites } from "../api/satellite-api";
+
+
+onMounted(async () => {
+    const { data } = await allSatellites()
+    console.log('data here', data);
+})
+
+
+</script>

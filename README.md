@@ -1,6 +1,6 @@
 <h1 align="center">
     <a href="/">
-        <img src="./assets/antenna.svg" alt="antena-radar" width="30" height="24">
+        <img src="./app/src/assets/antenna.svg" alt="antena-radar" width="30" height="24">
             antena-radar
     </a>
 </h1>

@@ -9,12 +9,14 @@
 <p align="center">
     <img src="https://img.shields.io/badge/laravel-gray?logo=laravel"/>
     <img src="https://img.shields.io/badge/docker-5742f5?logo=docker"/>
+    <img src="https://img.shields.io/badge/vite-FFD740?logo=vite"/>
 </p>
 
 ### Structure
 
 - [x] Laravel ;
 - [x] Docker ;
+- [x] Vue ;
 
 ### Requirements
 

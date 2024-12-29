@@ -13,7 +13,7 @@ class SatellitePolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class SatellitePolicy
      */
     public function view(User $user, Satellite $satellite): bool
     {
-        return false;
+        return $user->id === $satellite->user_id;
     }
 
     /**
@@ -29,7 +29,7 @@ class SatellitePolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -37,7 +37,7 @@ class SatellitePolicy
      */
     public function update(User $user, Satellite $satellite): bool
     {
-        return false;
+        return $user->id === $satellite->user_id;
     }
 
     /**
@@ -45,22 +45,6 @@ class SatellitePolicy
      */
     public function delete(User $user, Satellite $satellite): bool
     {
-        return false;
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     */
-    public function restore(User $user, Satellite $satellite): bool
-    {
-        return false;
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     */
-    public function forceDelete(User $user, Satellite $satellite): bool
-    {
-        return false;
+        return $user->id === $satellite->user_id;
     }
 }

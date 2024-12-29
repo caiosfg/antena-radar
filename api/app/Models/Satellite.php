@@ -22,4 +22,9 @@ class Satellite extends Model
         'end_date',
         'height',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

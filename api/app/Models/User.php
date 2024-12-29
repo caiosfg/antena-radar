@@ -45,4 +45,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function satellite()
+    {
+        return $this->hasMany(Satellite::class);
+    }
 }

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Satellite;
+use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,6 +14,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Satellite::factory(10)->create();
+        User::factory(5)->has(
+            Satellite::factory(10)
+        )->create();
     }
 }

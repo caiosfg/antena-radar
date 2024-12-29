@@ -1,8 +1,10 @@
 <template>
-  <div>
+  <div class="flex flex-col h-screen justify-between">
     <Navbar />
-    <Satellites />
-    <div class="absolute bottom-0 w-full">
+    <div class="flex h-full justify-center items-center m-4">
+      <SatellitesCards />
+    </div>
+    <div>
       <Footer />
     </div>
   </div>
@@ -11,7 +13,7 @@
 
 <script setup>
 import Navbar from './components/Navbar.vue';
-import Satellites from './pages/Satellites.vue';
+import SatellitesCards from './pages/SatellitesCards.vue';
 import Footer from './components/Footer.vue';
 </script>
 

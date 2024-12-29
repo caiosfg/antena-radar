@@ -62,12 +62,15 @@
 </template>
 
 <script setup>
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { allSatellites } from "../api/satellite-api";
+
+const satellites = ref([]);
 
 
 onMounted(async () => {
     const { data } = await allSatellites()
+    satellites.value = data.data;
     console.log('data here', data);
 })
 

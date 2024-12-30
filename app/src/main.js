@@ -3,6 +3,7 @@ import "./assets/index.css";
 import App from "./App.vue";
 import { createApp } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
+import { createPinia } from "pinia";
 
 import SatellitesCards from "./pages/SatellitesCards.vue";
 import NewSatellite from "./pages/NewSatellite.vue";
@@ -51,4 +52,9 @@ const router = createRouter({
   ],
 });
 
-createApp(App).use(router).mount("#app");
+const app = createApp(App);
+
+app.use(createPinia());
+app.use(router);
+
+app.mount("#app");

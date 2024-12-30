@@ -32,3 +32,13 @@
         </div>
     </nav>
 </template>
+
+
+<script setup>
+import { useUserStore } from "../store/useUser"
+import { computed } from 'vue'
+
+
+const store = useUserStore()
+const userName = computed(() => store.getUser)
+</script>

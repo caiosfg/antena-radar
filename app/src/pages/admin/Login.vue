@@ -22,6 +22,9 @@
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
 import { login } from "../../api/auth-api";
+import { useUserStore } from "../../store/useUser"
+
+const store = useUserStore()
 
 const form = reactive({
     email: '',
@@ -31,9 +34,14 @@ const form = reactive({
 const router = useRouter();
 
 async function handleLogin() {
-    const result = await login(form);
+    const data = await login(form);
 
-    if (result) {
+    if (data) {
+        store.setToken(data.data.token)
+        store.setEmail(data.data.user.email)
+        store.setUser(data.data.user.name)
+
+
         router.push({ path: '/' })
     }
 

@@ -13,9 +13,18 @@
             </button>
         </div>
         <div class="flex flex-col items-center pb-10">
-            <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="../../assets/antenna.svg" alt="satellite image" />
-            <h5 class="mb-1 text-xl font-medium text-gray-900">{{ satellite.name }}</h5>
-            <span class="text-sm text-gray-500">{{ satellite.description }}</span>
+            <img v-if="satellite.avatar" class="w-24 h-24 mb-3 rounded-full shadow-lg" :src="satellite.avatar"
+                :alt="satellite.name" />
+            <img v-else class="w-24 h-24 mb-3 rounded-full shadow-lg" src="../../assets/antenna.svg"
+                alt="satellite image" />
+            <div class="flex flex-col items-center w-full">
+                <h5 class="mb-1 text-xl font-medium text-gray-900">{{ satellite.name }}</h5>
+                <p class="text-sm text-gray-500">{{ satellite.description }}</p>
+                <div class="flex flex-col text-left">
+                    <p class="text-xs mt-3 text-gray-500">Endereço: {{ satellite.location }} - {{ satellite.uf }}</p>
+                    <p class="text-xs text-gray-500">Altura: {{ satellite.height }}</p>
+                </div>
+            </div>
             <div class="flex mt-6">
                 <a href="#"
                     class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Adicione</a>

@@ -79,6 +79,8 @@
 <script setup>
 import { reactive, ref } from "vue";
 import { createSatellite } from "../api/satellite-api";
+import { useRouter } from "vue-router";
+
 
 const newSatellite = reactive({
     name: '',
@@ -93,14 +95,17 @@ const newSatellite = reactive({
     height: '',
 })
 
-const satellite = ref([])
+const router = useRouter();
 const imageSrc = ref([]);
 const selectedFiles = ref([]);
 
 async function addSatellite() {
     const result = await createSatellite(newSatellite);
 
-    satellite.value.unshift(result)
+    if (result) {
+        router.push({ path: '/antenas' })
+    }
+
 }
 
 const handelFileUpload = (e) => {

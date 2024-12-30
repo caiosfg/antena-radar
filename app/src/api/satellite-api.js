@@ -1,4 +1,3 @@
-import Satellites from "@/pages/Satellites.vue";
 import api from "./api";
 
 const resource = "/satellite";

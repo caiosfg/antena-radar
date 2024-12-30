@@ -31,3 +31,7 @@
 3. Execute as migrations para criação das tabelas, dentro do container da api:
 
    > `php artisan migrate`
+
+4. Swagger no endereço:
+
+   > `http://localhost:8080/api/documentation`

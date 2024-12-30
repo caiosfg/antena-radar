@@ -1,5 +1,5 @@
 <template>
-    <form class="min-w-80 rounded mx-auto p-6 shadow" @submit.prevent="handleSubmit">
+    <form class="min-w-80 rounded mx-auto p-6 shadow" @submit.prevent="handleRegister">
         <div class="grid grid-cols-2 gap-4">
             <div class="col-span-2">
                 <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Nome</label>
@@ -27,11 +27,25 @@
 
 <script setup>
 import { reactive } from "vue";
+import { useRouter } from "vue-router";
+import { register } from "../../api/auth-api";
 
 const form = reactive({
     email: '',
     name: '',
     password: '',
 })
+
+const router = useRouter();
+
+async function handleRegister() {
+    const result = await register(form);
+    console.log("🚀 ~ handleRegister ~ result:", result)
+
+    if (result) {
+        router.push({ path: '/' })
+    }
+
+}
 
 </script>

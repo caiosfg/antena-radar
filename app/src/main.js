@@ -13,6 +13,7 @@ import DeleteSatellite from "./pages/DeleteSatellite.vue";
 import Login from "./pages/admin/Login.vue";
 import Logout from "./pages/admin/Logout.vue";
 import Register from "./pages/admin/Register.vue";
+import RankingSatellite from "./pages/RankingSatellite.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -48,6 +49,11 @@ const router = createRouter({
       path: "/register",
       name: "register",
       component: Register,
+    },
+    {
+      path: "/ranking",
+      name: "ranking",
+      component: RankingSatellite,
     },
   ],
 });

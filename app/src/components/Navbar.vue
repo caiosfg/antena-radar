@@ -14,6 +14,10 @@
                     class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
                     Adicionar
                 </RouterLink>
+                <RouterLink to="/ranking"
+                    class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+                    Ranking
+                </RouterLink>
             </div>
             <div class="space-x-2">
                 <RouterLink v-if="!userName" to="/login"

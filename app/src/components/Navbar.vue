@@ -16,12 +16,18 @@
                 </RouterLink>
             </div>
             <div class="space-x-2">
-                <a href="#"
-                    class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Login</a>
-                <a href="#"
-                    class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-white hover:bg-blue-500 mt-4 lg:mt-0">Register</a>
-                <a href="#"
-                    class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-white hover:bg-red-500 mt-4 lg:mt-0">Logout</a>
+                <RouterLink to="/login"
+                    class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">
+                    Login
+                </RouterLink>
+                <RouterLink to="/register"
+                    class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-white hover:bg-blue-500 mt-4 lg:mt-0">
+                    Register
+                </RouterLink>
+                <RouterLink to="/logout"
+                    class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-white hover:bg-red-500 mt-4 lg:mt-0">
+                    Logout
+                </RouterLink>
             </div>
         </div>
     </nav>

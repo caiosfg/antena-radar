@@ -9,6 +9,9 @@ import NewSatellite from "./pages/NewSatellite.vue";
 import Home from "./pages/Home.vue";
 import EditSatellite from "./pages/EditSatellite.vue";
 import DeleteSatellite from "./pages/DeleteSatellite.vue";
+import Login from "./pages/admin/Login.vue";
+import Logout from "./pages/admin/Logout.vue";
+import Register from "./pages/admin/Register.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -29,6 +32,21 @@ const router = createRouter({
       path: "/deletar-antena/:id",
       name: "deletarAntena",
       component: DeleteSatellite,
+    },
+    {
+      path: "/login",
+      name: "login",
+      component: Login,
+    },
+    {
+      path: "/logout",
+      name: "logout",
+      component: Logout,
+    },
+    {
+      path: "/register",
+      name: "register",
+      component: Register,
     },
   ],
 });

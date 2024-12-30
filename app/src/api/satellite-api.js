@@ -1,6 +1,6 @@
 import api from "./api";
 
-const resource = "/satellite";
+const resource = "/api/v1/satellite";
 
 export const allSatellites = () => api.get(resource);
 

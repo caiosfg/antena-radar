@@ -23,5 +23,10 @@ export const useUserStore = defineStore("user", {
     setToken(token) {
       this.token = token;
     },
+    clearAll() {
+      this.token = null;
+      this.name = null;
+      this.email = null;
+    },
   },
 });

@@ -17,6 +17,8 @@
 - [x] Laravel ;
 - [x] Docker ;
 - [x] Vue ;
+- [x] Vite ;
+- [x] Pinia ;
 
 ### Requirements
 

@@ -1,7 +1,9 @@
 <template>
     <div class="min-w-80 rounded mx-auto p-6 shadow">
         <div class="animate-pulse flex justify-between items-center text-lime-600">
-            <h2 class=" font-bold text-xl">Até à próxima</h2>
+            <h2 class=" font-bold text-xl">Até à próxima
+                <span v-if="userName" class="font-bold text-green-900">{{ userName }}</span>
+            </h2>
             <div class="animate-bounce">
                 <div class="bg-gray-200 p-4 rounded-full">
                     <svg width="25px" height="25px" viewBox="0 0 152 152" fill="none"
@@ -17,4 +19,15 @@
 </template>
 
 <script setup>
+import { useUserStore } from "../../store/useUser"
+import { computed, onMounted } from 'vue'
+
+const store = useUserStore()
+const userName = computed(() => store.getUser)
+
+onMounted(() => {
+    store.clearAll()
+
+})
+
 </script>

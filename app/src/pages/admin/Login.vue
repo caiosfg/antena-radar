@@ -1,5 +1,5 @@
 <template>
-    <form class="min-w-80 rounded mx-auto p-6 shadow" @submit.prevent="handleSubmit">
+    <form class="min-w-80 rounded mx-auto p-6 shadow" @submit.prevent="handleLogin">
         <div class="grid grid-cols-2 gap-4">
             <div class="col-span-2">
                 <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
@@ -15,16 +15,27 @@
             </div>
         </div>
         <button type="submit"
-            class="text-white mt-6 min-w-full hover:bg-lime-700 focus:ring-4 focus:outline-none focus:ring-lime-800 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center bg-lime-600">Entrar</button>
+            class="text-white mt-6 min-w-full hover:bg-lime-700 focus:ring-4 focus:outline-none focus:ring-lime-800 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center bg-lime-600">Registrar</button>
     </form>
 </template>
-
 <script setup>
 import { reactive } from "vue";
+import { useRouter } from "vue-router";
+import { login } from "../../api/auth-api";
 
 const form = reactive({
     email: '',
     password: '',
 })
 
+const router = useRouter();
+
+async function handleLogin() {
+    const result = await login(form);
+
+    if (result) {
+        router.push({ path: '/' })
+    }
+
+}
 </script>

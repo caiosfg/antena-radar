@@ -1,9 +1,9 @@
 <template>
     <nav class="flex items-center justify-between flex-wrap bg-teal-500 p-6">
-        <div class="flex items-center flex-shrink-0 text-white mr-6">
+        <RouterLink to="/" class="flex items-center flex-shrink-0 text-white mr-6">
             <img src="../assets/antenna.svg" alt="icon antenna" height="40" width="40">
             <span class="font-semibold text-xl tracking-tight">Antena Radar</span>
-        </div>
+        </RouterLink>
         <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
             <div class="text-sm lg:flex-grow">
                 <RouterLink to="/antenas"

@@ -17,10 +17,7 @@
                 <label for="uf" class="block mb-2 text-sm font-medium text-gray-900">UF</label>
                 <select name="uf" id="uf" v-model="newSatellite.uf"
                     class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500">
-                    <option value="rj">RJ</option>
-                    <option value="sp">SP</option>
-                    <option value="bh">BH</option>
-                    <option value="mg">MG</option>
+                    <option v-for="uf in getUfsIbge" :key="uf.id" :value="uf.sigla">{{ uf.nome }}</option>
                 </select>
             </div>
             <div class="mb-5">
@@ -77,9 +74,10 @@
 </template>
 
 <script setup>
-import { reactive, ref } from "vue";
+import { reactive, ref, onMounted } from "vue";
 import { createSatellite } from "../api/satellite-api";
 import { useRouter } from "vue-router";
+import axios from "axios";
 
 
 const newSatellite = reactive({
@@ -98,6 +96,7 @@ const newSatellite = reactive({
 const router = useRouter();
 const imageSrc = ref([]);
 const selectedFiles = ref([]);
+const getUfsIbge = ref([]);
 
 async function addSatellite() {
     const result = await createSatellite(newSatellite);
@@ -107,6 +106,21 @@ async function addSatellite() {
     }
 
 }
+
+onMounted(async () => {
+
+    const data = await axios.get("/ibge/", {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+
+    if (data.data) {
+        for (let i = 0; i < data.data.length; i++) {
+            getUfsIbge.value.push(data.data[i]);
+        }
+    }
+})
 
 const handelFileUpload = (e) => {
     var files = e.target.files || e.dataTransfer.files;

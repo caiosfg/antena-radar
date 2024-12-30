@@ -2,7 +2,7 @@
     <div class="w-full h-full">
         <Carousel v-bind="config" class="w-full h-full">
             <Slide v-for="satellite in satellites" :key="satellite.id">
-                <Satellite :satellite="satellite" />
+                <Satellite :satellite="satellite" class="my-2 p-2" />
             </Slide>
             <template #addons>
                 <Navigation />

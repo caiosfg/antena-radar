@@ -7,6 +7,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import SatellitesCards from "./pages/SatellitesCards.vue";
 import NewSatellite from "./pages/NewSatellite.vue";
 import Home from "./pages/Home.vue";
+import EditSatellite from "./pages/EditSatellite.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -17,6 +18,11 @@ const router = createRouter({
       path: "/adicionar-antena",
       name: "adicionarAntena",
       component: NewSatellite,
+    },
+    {
+      path: "/editar-antena/:id",
+      name: "editarAntena",
+      component: EditSatellite,
     },
   ],
 });

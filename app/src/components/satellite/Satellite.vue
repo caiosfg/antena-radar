@@ -2,13 +2,18 @@
     <div class="h-96 w-96 bg-white border border-gray-200 rounded-lg shadow">
         <div class="flex justify-end px-4 pt-4">
             <button id="dropdownButton" data-dropdown-toggle="dropdown"
-                class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5"
+                class="inline-block text-gray-500 hover:bg-red-100 focus:ring-4 focus:outline-none focus:ring-red-200 rounded-lg text-sm p-1.5"
                 type="button">
                 <span class="sr-only">Editar</span>
-                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                    viewBox="0 0 16 3">
+                <svg width="25px" height="25px" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 18h2v16h-2z" />
+                    <path d="M24 18h2v16h-2z" />
+                    <path d="M28 18h2v16h-2z" />
+                    <path d="M12 12h26v2H12z" />
                     <path
-                        d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
+                        d="M30 12h-2v-1c0-.6-.4-1-1-1h-4c-.6 0-1 .4-1 1v1h-2v-1c0-1.7 1.3-3 3-3h4c1.7 0 3 1.3 3 3v1z" />
+                    <path
+                        d="M31 40H19c-1.6 0-3-1.3-3.2-2.9l-1.8-24 2-.2 1.8 24c0 .6.6 1.1 1.2 1.1h12c.6 0 1.1-.5 1.2-1.1l1.8-24 2 .2-1.8 24C34 38.7 32.6 40 31 40z" />
                 </svg>
             </button>
         </div>
@@ -25,12 +30,11 @@
                     <p class="text-xs text-gray-500">Altura: {{ satellite.height }}</p>
                 </div>
             </div>
-            <div class="flex mt-6">
-                <a href="#"
-                    class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Adicione</a>
-                <a href="#"
-                    class="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Texto</a>
-            </div>
+        </div>
+        <div class="flex mt-6 w-full px-12">
+            <RouterLink :to="`/editar-antena/${satellite.id}`"
+                class="text-white hover:bg-lime-700 focus:ring-4 focus:outline-none focus:ring-lime-800 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center bg-lime-600">
+                Editar</RouterLink>
         </div>
     </div>
 </template>

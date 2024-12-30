@@ -14,10 +14,6 @@
                     class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
                     Adicionar
                 </RouterLink>
-                <a href="#responsive-header"
-                    class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
-                    Resumos
-                </a>
             </div>
             <div class="space-x-2">
                 <a href="#"

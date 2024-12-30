@@ -1,10 +1,9 @@
 <template>
     <div class="h-96 w-96 bg-white border border-gray-200 rounded-lg shadow">
         <div class="flex justify-end px-4 pt-4">
-            <button id="dropdownButton" data-dropdown-toggle="dropdown"
-                class="inline-block text-gray-500 hover:bg-red-100 focus:ring-4 focus:outline-none focus:ring-red-200 rounded-lg text-sm p-1.5"
-                type="button">
-                <span class="sr-only">Editar</span>
+            <RouterLink :to="`/deletar-antena/${satellite.id}`"
+                class="inline-block text-gray-500 hover:bg-red-100 focus:ring-4 focus:outline-none focus:ring-red-200 rounded-lg text-sm p-1.5">
+                <span class="sr-only">Deletar</span>
                 <svg width="25px" height="25px" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
                     <path d="M20 18h2v16h-2z" />
                     <path d="M24 18h2v16h-2z" />
@@ -15,7 +14,7 @@
                     <path
                         d="M31 40H19c-1.6 0-3-1.3-3.2-2.9l-1.8-24 2-.2 1.8 24c0 .6.6 1.1 1.2 1.1h12c.6 0 1.1-.5 1.2-1.1l1.8-24 2 .2-1.8 24C34 38.7 32.6 40 31 40z" />
                 </svg>
-            </button>
+            </RouterLink>
         </div>
         <div class="flex flex-col items-center pb-10">
             <img v-if="satellite.avatar" class="w-24 h-24 mb-3 rounded-full shadow-lg" :src="satellite.avatar"

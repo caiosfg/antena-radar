@@ -1,4 +1,13 @@
 services:
+  app:
+    build:
+      context: .
+      dockerfile: vue/Dockerfile
+    ports:
+      - 3000:3000
+    networks:
+      - internal
+    container_name: antena-vue
   nginx:
     build:
       context: .

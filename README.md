@@ -32,6 +32,10 @@
 
    > `php artisan migrate`
 
-4. Swagger no endereço:
+4. Frontend no endereço:
+
+   > `http://http://localhost:3000`
+
+5. Swagger no endereço:
 
    > `http://localhost:8080/api/documentation`

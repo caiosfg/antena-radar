@@ -17,10 +17,7 @@
                 <label for="uf" class="block mb-2 text-sm font-medium text-gray-900">UF</label>
                 <select name="uf" id="uf" v-model="editSatellite.uf"
                     class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500">
-                    <option value="rj">RJ</option>
-                    <option value="sp">SP</option>
-                    <option value="bh">BH</option>
-                    <option value="mg">MG</option>
+                    <option v-for="uf in getUfsIbge" :key="uf.id" :value="uf.sigla">{{ uf.nome }}</option>
                 </select>
             </div>
             <div class="mb-5">
@@ -97,6 +94,8 @@
 import { reactive, onMounted, ref } from "vue";
 import { getSatelliteById, updateSatellite } from "../api/satellite-api"
 import { useRoute, useRouter } from "vue-router";
+import axios from "axios";
+
 
 const editSatellite = reactive({
     name: '',
@@ -115,6 +114,7 @@ const route = useRoute();
 const router = useRouter();
 const imageSrc = ref([]);
 const selectedFiles = ref([]);
+const getUfsIbge = ref([]);
 
 onMounted(async () => {
     const { data: { data } } = await getSatelliteById(route.params.id)
@@ -130,6 +130,19 @@ onMounted(async () => {
         editSatellite.start_date = data.start_date;
         editSatellite.end_date = data.end_date;
         editSatellite.height = data.height;
+    }
+
+
+    const ibgeInfo = await axios.get("/ibge/", {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+
+    if (ibgeInfo.data) {
+        for (let i = 0; i < ibgeInfo.data.length; i++) {
+            getUfsIbge.value.push(ibgeInfo.data[i]);
+        }
     }
 
 })

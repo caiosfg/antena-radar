@@ -68,6 +68,7 @@
                     placeholder="Solar Prime" required />
             </div>
         </div>
+        <GoogleMaps />
         <button type="submit"
             class="text-white hover:bg-lime-700 focus:ring-4 focus:outline-none focus:ring-lime-800 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center bg-lime-600">Cadastrar</button>
     </form>
@@ -77,6 +78,7 @@
 import { reactive, ref, onMounted } from "vue";
 import { createSatellite } from "../api/satellite-api";
 import { useRouter } from "vue-router";
+import GoogleMaps from "@/components/GoogleMaps.vue";
 import axios from "axios";
 
 

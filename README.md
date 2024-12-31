@@ -22,7 +22,7 @@
 
 ### Requirements
 
-1. Copie o `.env.example` e renomeie para `.env` dentro e `api`;
+1. Copie o `.env.example` e renomeie para `.env` dentro e `api` e `app`;
 
 2. Execute o comando abaixo para subir as imagens:
 

@@ -7,58 +7,27 @@
 
 <script setup>
 import ApexCharts from 'apexcharts'
+import { getRanking } from "../api/ranking-api"
 import { onMounted, ref } from "vue";
 
-
-const options = ref({});
-
-onMounted(async () => {
-    options.value = {
-        chart: {
-            type: 'line'
-        },
-        series: [{
-            name: 'sales',
-            data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
-        }],
-        xaxis: {
-            categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
-        }
+const optionsLine = ref({
+    series: [{
+        name: 'Antenas',
+        data: []
+    }],
+    chart: {
+        type: 'line',
+        height: 350
+    },
+    xaxis: {
+        categories: []
     }
+});
 
-    var chartOriginLine = document.querySelector('#linechart');
-    if (chartOriginLine) {
-        createLineCharts()
-    }
-
-    var chartOriginBar = document.querySelector('#barchart');
-    if (chartOriginBar) {
-        createBarCharts()
-    }
-
-})
-
-function createLineCharts() {
-    const chart = new ApexCharts(document.querySelector('#linechart'), {
+const optionsBar = ref(
+    {
         series: [{
-            name: 'Series 1',
-            data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
-        }],
-        chart: {
-            type: 'line',
-            height: 350
-        },
-        xaxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep']
-        }
-    });
-    chart.render();
-}
-
-function createBarCharts() {
-    var options = {
-        series: [{
-            data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
+            data: []
         }],
         chart: {
             type: 'bar',
@@ -96,9 +65,7 @@ function createBarCharts() {
             colors: ['#fff']
         },
         xaxis: {
-            categories: ['South Korea', 'Canada', 'United Kingdom', 'Netherlands', 'Italy', 'France', 'Japan',
-                'United States', 'China', 'India'
-            ],
+            categories: []
         },
         yaxis: {
             labels: {
@@ -106,12 +73,12 @@ function createBarCharts() {
             }
         },
         title: {
-            text: 'Custom DataLabels',
+            text: 'Listagem de antenas',
             align: 'center',
             floating: true
         },
         subtitle: {
-            text: 'Category Names as DataLabels inside bars',
+            text: 'Ranking das UFs',
             align: 'center',
         },
         tooltip: {
@@ -127,9 +94,49 @@ function createBarCharts() {
                 }
             }
         }
-    };
+    }
+);
 
-    var chart = new ApexCharts(document.querySelector("#barchart"), options);
+onMounted(async () => {
+
+    var chartOriginLine = document.querySelector('#linechart');
+    var chartOriginBar = document.querySelector('#barchart');
+
+    await getAllRanking()
+
+    if (chartOriginLine) {
+        await createLineCharts()
+    }
+
+    if (chartOriginBar) {
+        await createBarCharts()
+    }
+})
+
+async function getAllRanking() {
+    await getRanking().then(response => {
+        if (response.data) {
+            response.data.data?.forEach((line) => {
+                if (line.total) {
+                    optionsLine.value.series[0].data?.push(line.total);
+                    optionsBar.value.series[0].data?.push(line.total);
+                }
+                if (line.uf) {
+                    optionsLine.value.xaxis.categories.push(line.uf);
+                    optionsBar.value.xaxis.categories.push(line.uf);
+                }
+            });
+        }
+    });
+}
+
+function createLineCharts() {
+    const chart = new ApexCharts(document.querySelector('#linechart'), optionsLine.value);
+    chart.render();
+}
+
+function createBarCharts() {
+    var chart = new ApexCharts(document.querySelector("#barchart"), optionsBar.value);
     chart.render();
 }
 </script>

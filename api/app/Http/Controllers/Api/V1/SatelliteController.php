@@ -7,6 +7,7 @@ use App\Http\Requests\StoreSatelliteRequest;
 use App\Http\Requests\UpdateSatelliteRequest;
 use App\Http\Resources\SatelliteResource;
 use App\Models\Satellite;
+use Illuminate\Support\Facades\Gate;
 
 class SatelliteController extends Controller
 {
@@ -93,6 +94,8 @@ class SatelliteController extends Controller
      */
     public function show(Satellite $satellite)
     {
+        Gate::authorize('view', $satellite);
+        
         return SatelliteResource::make($satellite);
     }
 

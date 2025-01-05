@@ -5,4 +5,5 @@ storage
 db-data
 logs
 .vscode
+.DS_Store
 node_modules

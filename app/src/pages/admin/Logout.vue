@@ -23,11 +23,19 @@ import { useUserStore } from "../../store/useUser"
 import { computed, onMounted } from 'vue'
 
 const store = useUserStore()
+
 const userName = computed(() => store.getUser)
 
 onMounted(() => {
+    handleLogout()
     store.clearAll()
 
 })
 
+
+async function handleLogout() {
+    const data = await store.handleLogout();
+    console.log("🚀 ~ handleLogout ~ data:", data)
+
+}
 </script>

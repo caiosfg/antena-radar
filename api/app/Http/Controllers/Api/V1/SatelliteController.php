@@ -139,6 +139,10 @@ class SatelliteController extends Controller
      */
     public function update(UpdateSatelliteRequest $request, Satellite $satellite)
     {
+        if($request->user()->cannot('update', $satellite)) {
+            abort(401, "Unauthorized for this user!");
+        }
+
         $satellite->update($request->validated());
 
         return SatelliteResource::make($satellite);
@@ -166,6 +170,10 @@ class SatelliteController extends Controller
      */
     public function destroy(Satellite $satellite)
     {
+        if(request()->user()->cannot('delete', $satellite)) {
+            abort(401, "Unauthorized for this user!");
+        }
+
         $satellite->delete();
 
         return response()->noContent();

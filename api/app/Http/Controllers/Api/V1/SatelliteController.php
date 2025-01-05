@@ -27,7 +27,9 @@ class SatelliteController extends Controller
      */
     public function index()
     {
-        return SatelliteResource::collection(Satellite::all());
+        $user = auth('sanctum')->user();
+
+        return Satellite::where('user_id', $user->id)->get();
     }
 
     /**
@@ -62,7 +64,7 @@ class SatelliteController extends Controller
      */
     public function store(StoreSatelliteRequest $request)
     {
-        $satellite = Satellite::create($request->validated());
+        $satellite = $request->user()->satellite()->create($request->validated());
 
         return SatelliteResource::make($satellite);
     }

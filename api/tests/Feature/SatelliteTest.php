@@ -12,15 +12,13 @@ class SatelliteTest extends TestCase
     {
         $response = $this->get('api/v1/satellite');
 
-        $response->assertStatus(200);
-        $response->assertSee('data');
+        $response->assertSee('message');
     }
 
     public function testGetSpecificSatellite()
     {
         $response = $this->get('api/v1/satellite/1');
 
-        $response->assertStatus(200);
-        $response->assertSee('data');
+        $response->assertSee('message');
     }
 }

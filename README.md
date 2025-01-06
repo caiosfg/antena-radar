@@ -47,3 +47,7 @@
 7. Carga de dados:
 
    > `php artisan db:seed`
+
+8. Geração de documentação:
+
+   > `php artisan l5-swagger:generate`

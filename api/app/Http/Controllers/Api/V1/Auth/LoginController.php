@@ -13,6 +13,35 @@ class LoginController extends Controller
     /**
      * Handle the incoming request.
      */
+
+    /**
+     * @OA\Post(
+     *   path="/api/auth/login",
+     *   summary="Login method",
+     *   tags={"Auth"},
+     *   @OA\Parameter(
+     *     name="email",
+     *     in="query",
+     *     required=true,
+      *          @OA\Schema(
+     *              type="string"
+     *          )
+     *   ),
+     *   @OA\Parameter(
+     *     name="password",
+     *     in="query",
+     *     required=true,
+      *          @OA\Schema(
+     *              type="string"
+     *          )
+     *   ),
+     *   @OA\Response(
+     *     response=200,
+     *     description="Successful Operation"
+     *   )
+     * )
+     *
+     */
     public function __invoke(LoginRequest $request)
     {
         $user = User::where('email', $request->email)->first();

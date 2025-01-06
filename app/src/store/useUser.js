@@ -31,7 +31,7 @@ export const useUserStore = defineStore("user", {
       this.email = null;
     },
     async handleLogout() {
-      const response = await logout();
+      const response = await logout(this.token);
       this.clearAll();
       return response;
     },

@@ -9,6 +9,11 @@ export const login = (credentials) =>
 
 export const register = (user) => api.post(`${resource}/register`, user);
 
-export const logout = () => api.post(`${resource}/logout`);
+export const logout = async (token) => {
+  api.defaults.headers.common = { Authorization: `bearer ${token}` };
+  const { data } = await api.post(`${resource}/logout`);
+
+  return data;
+};
 
 export const getUser = () => api.get("/api/user");

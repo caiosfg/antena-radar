@@ -66,11 +66,22 @@
                 </ul>
 
             </div>
-            <div class="col-span-2">
+            <div class="col-span-1">
                 <label for="location" class="block mb-2 text-sm font-medium text-gray-900">Localização</label>
-                <input type="text" id="location" v-model="editSatellite.location"
-                    class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Rua olinda menezes, n:12" required />
+                <div class="grid gap-2 grid-cols-2">
+                    <div>
+                        <label for="lat" class="block text-xs text-gray-900">Latitude</label>
+                        <input type="number" id="lat" min="-90" max="90" v-model="editSatellite.location.lat"
+                            class="border text-sm rounded-lg block w-full p-1 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="1" required />
+                    </div>
+                    <div>
+                        <label for="lng" class="block text-xs text-gray-900">Longitude</label>
+                        <input type="number" id="lng" min="-180" max="180" v-model="editSatellite.location.lng"
+                            class="border text-sm rounded-lg block w-full p-1 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="1" required />
+                    </div>
+                </div>
             </div>
             <div class="mb-5">
                 <label for="start_date" class="block mb-2 text-sm font-medium text-gray-900">Data de implantação</label>
@@ -85,8 +96,9 @@
                     placeholder="Solar Prime" required />
             </div>
         </div>
+        <GoogleMaps :has-lat="editSatellite.location.lat" :has-lng="editSatellite.location.lng" />
         <button type="submit"
-            class="text-white hover:bg-lime-700 focus:ring-4 focus:outline-none focus:ring-lime-800 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center bg-lime-600">Editar</button>
+            class="text-white mt-4 hover:bg-lime-700 focus:ring-4 focus:outline-none focus:ring-lime-800 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center bg-lime-600">Editar</button>
     </form>
 </template>
 
@@ -95,14 +107,14 @@ import { reactive, onMounted, ref } from "vue";
 import { useSatellite } from "../store/useSatellite"
 import { useRoute, useRouter } from "vue-router";
 import axios from "axios";
-
+import GoogleMaps from "@/components/GoogleMaps.vue";
 
 const editSatellite = reactive({
     name: '',
     description: '',
     uf: '',
     avatar: null,
-    location: '',
+    location: { lat: null, lng: null },
     active: false,
     category: null,
     start_date: '',
@@ -126,7 +138,10 @@ onMounted(async () => {
         editSatellite.description = data.description;
         editSatellite.uf = data.uf;
         editSatellite.avatar = data.avatar;
-        editSatellite.location = data.location;
+
+        editSatellite.location.lat = JSON.parse(data.location).lat;
+        editSatellite.location.lng = JSON.parse(data.location).lng;
+
         editSatellite.active = data.active;
         editSatellite.category = data.category;
         editSatellite.start_date = data.start_date;
@@ -163,6 +178,8 @@ const handelFileUpload = (e) => {
 };
 
 async function changeSatellite() {
+    editSatellite.location = JSON.stringify(editSatellite.location)
+
     const result = await store.fetchUpdateSatellitesId(route.params.id, editSatellite);
 
     if (result) {

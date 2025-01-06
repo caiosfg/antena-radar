@@ -6,6 +6,7 @@ import {
   createSatellite,
   removeSatellite,
 } from "../api/satellite-api";
+import { getRanking } from "../api/ranking-api";
 import { useUserStore } from "./useUser";
 
 export const useSatellite = defineStore("satellite", {
@@ -39,6 +40,12 @@ export const useSatellite = defineStore("satellite", {
     async fetchSatelliteRemoveId(id) {
       const store = useUserStore();
       const response = await removeSatellite(store.getToken, id);
+
+      return response;
+    },
+    async fetchSatelliteRanking() {
+      const store = useUserStore();
+      const response = await getRanking(store.getToken);
 
       return response;
     },

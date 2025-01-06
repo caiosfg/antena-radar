@@ -7,7 +7,7 @@
 
 <script setup>
 import ApexCharts from 'apexcharts'
-import { getRanking } from "../api/ranking-api"
+import { useSatellite } from "../store/useSatellite"
 import { onMounted, ref } from "vue";
 
 const optionsLine = ref({
@@ -97,6 +97,8 @@ const optionsBar = ref(
     }
 );
 
+const store = useSatellite();
+
 onMounted(async () => {
 
     var chartOriginLine = document.querySelector('#linechart');
@@ -114,9 +116,9 @@ onMounted(async () => {
 })
 
 async function getAllRanking() {
-    await getRanking().then(response => {
+    await store.fetchSatelliteRanking().then(response => {
         if (response.data) {
-            response.data.data?.forEach((line) => {
+            response.data?.forEach((line) => {
                 if (line.total) {
                     optionsLine.value.series[0].data?.push(line.total);
                     optionsBar.value.series[0].data?.push(line.total);

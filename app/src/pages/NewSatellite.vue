@@ -1,6 +1,6 @@
 <template>
     <form class="min-w-80 rounded mx-auto p-8 shadow" @submit.prevent="addSatellite">
-        <div class="grid grid-cols-4 gap-4">
+        <div class="grid grid-cols-4 gap-4 ontent-around">
             <div class="col-span-2">
                 <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Nome</label>
                 <input type="text" id="name" v-model="newSatellite.name"
@@ -49,11 +49,22 @@
                     @change="(event) => handelFileUpload(event)"
                     class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500">
             </div>
-            <div class="col-span-2">
+            <div class="col-span-1">
                 <label for="location" class="block mb-2 text-sm font-medium text-gray-900">Localização</label>
-                <input type="text" id="location" v-model="newSatellite.location"
-                    class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Rua olinda menezes, n:12" required />
+                <div class="grid gap-2 grid-cols-2">
+                    <div>
+                        <label for="lat" class="block text-xs text-gray-900">Latitude</label>
+                        <input type="number" id="lat" min="-90" max="90" v-model="newSatellite.location.lat"
+                            class="border text-sm rounded-lg block w-full p-1 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="1" required />
+                    </div>
+                    <div>
+                        <label for="lng" class="block text-xs text-gray-900">Longitude</label>
+                        <input type="number" id="lng" min="-180" max="180" v-model="newSatellite.location.lng"
+                            class="border text-sm rounded-lg block w-full p-1 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="1" required />
+                    </div>
+                </div>
             </div>
             <div class="mb-5">
                 <label for="start_date" class="block mb-2 text-sm font-medium text-gray-900">Data de implantação</label>
@@ -68,9 +79,9 @@
                     placeholder="Solar Prime" required />
             </div>
         </div>
-        <GoogleMaps />
+        <GoogleMaps :has-lat="newSatellite.location.lat" :has-lng="newSatellite.location.lng" />
         <button type="submit"
-            class="text-white hover:bg-lime-700 focus:ring-4 focus:outline-none focus:ring-lime-800 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center bg-lime-600">Cadastrar</button>
+            class="text-white mt-4 hover:bg-lime-700 focus:ring-4 focus:outline-none focus:ring-lime-800 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center bg-lime-600">Cadastrar</button>
     </form>
 </template>
 
@@ -87,7 +98,7 @@ const newSatellite = reactive({
     description: '',
     uf: '',
     avatar: null,
-    location: '',
+    location: { lat: null, lng: null },
     active: false,
     category: null,
     start_date: '',
@@ -103,6 +114,7 @@ const selectedFiles = ref([]);
 const getUfsIbge = ref([]);
 
 async function addSatellite() {
+    newSatellite.location = JSON.stringify(newSatellite.location)
     const result = await store.fetchCreateSatellite(newSatellite);
 
     if (result) {

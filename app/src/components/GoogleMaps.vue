@@ -1,8 +1,8 @@
 <template>
     <div>
-        <GoogleMap :api-key="apiKey" style="width: 100%; height: 500px" :center="{ lat: lat, lng: lng }" :zoom="15">
-            <Marker :options="{ position: { lat: lat, lng: lng } }" />
-            <Marker :options="{ position: { lat: lat + 0.001, lng: lng }, label }" />
+        <GoogleMap :api-key="apiKey" style="width: 100%; height: 150px" :center="{ lat: posLat, lng: posLng }"
+            :zoom="15">
+            <Marker :options="{ position: { lat: posLat, lng: posLng } }" />
         </GoogleMap>
     </div>
 </template>
@@ -12,9 +12,27 @@ import { GoogleMap, Marker } from 'vue3-google-map'
 
 export default {
     name: "DemoComponent",
+    props: {
+        hasLat: {
+            type: String,
+            default: null
+        },
+        hasLng: {
+            type: String,
+            default: null
+        }
+    },
     components: {
         GoogleMap,
         Marker
+    },
+    computed: {
+        posLat() {
+            return this.hasLat || this.lat;
+        },
+        posLng() {
+            return this.hasLng || this.lng;
+        },
     },
     data() {
         return {

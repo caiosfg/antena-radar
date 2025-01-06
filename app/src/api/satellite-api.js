@@ -12,11 +12,20 @@ export const allSatellites = async (token) => {
   return data;
 };
 
-export const getSatelliteById = (id) => api.get(`${resource}/${id}`);
+export const getSatelliteById = async (token, id) => {
+  axios.defaults.headers.common = { Authorization: `bearer ${token}` };
+  const { data } = await axios.get(`${resource}/${id}`);
+
+  return data;
+};
+
+export const updateSatellite = async (token, id, satellite) => {
+  axios.defaults.headers.common = { Authorization: `bearer ${token}` };
+  const { data } = await axios.put(`${resource}/${id}`, satellite);
+
+  return data;
+};
 
 export const createSatellite = (satellite) => api.post(resource, satellite);
-
-export const updateSatellite = (id, satellite) =>
-  api.put(`${resource}/${id}`, satellite);
 
 export const removeSatellite = (id) => api.delete(`${resource}/${id}`);

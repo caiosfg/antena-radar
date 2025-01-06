@@ -92,7 +92,7 @@
 
 <script setup>
 import { reactive, onMounted, ref } from "vue";
-import { getSatelliteById, updateSatellite } from "../api/satellite-api"
+import { useSatellite } from "../store/useSatellite"
 import { useRoute, useRouter } from "vue-router";
 import axios from "axios";
 
@@ -110,6 +110,8 @@ const editSatellite = reactive({
     height: '',
 })
 
+const store = useSatellite();
+
 const route = useRoute();
 const router = useRouter();
 const imageSrc = ref([]);
@@ -117,7 +119,7 @@ const selectedFiles = ref([]);
 const getUfsIbge = ref([]);
 
 onMounted(async () => {
-    const { data: { data } } = await getSatelliteById(route.params.id)
+    const { data } = await store.fetchSatellitesId(route.params.id)
 
     if (data) {
         editSatellite.name = data.name;
@@ -161,7 +163,7 @@ const handelFileUpload = (e) => {
 };
 
 async function changeSatellite() {
-    const result = await updateSatellite(route.params.id, editSatellite);
+    const result = await store.fetchUpdateSatellitesId(route.params.id, editSatellite);
 
     if (result) {
         router.push({ path: '/antenas' })

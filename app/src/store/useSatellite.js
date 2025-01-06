@@ -1,10 +1,10 @@
 import { defineStore } from "pinia";
 import {
   allSatellites,
-  createSatellite,
-  removeSatellite,
   getSatelliteById,
   updateSatellite,
+  createSatellite,
+  removeSatellite,
 } from "../api/satellite-api";
 import { useUserStore } from "./useUser";
 
@@ -15,6 +15,18 @@ export const useSatellite = defineStore("satellite", {
     async fetchAllSatellites() {
       const store = useUserStore();
       const response = await allSatellites(store.getToken);
+
+      return response;
+    },
+    async fetchSatellitesId(id) {
+      const store = useUserStore();
+      const response = await getSatelliteById(store.getToken, id);
+
+      return response;
+    },
+    async fetchUpdateSatellitesId(id, editSatellite) {
+      const store = useUserStore();
+      const response = await updateSatellite(store.getToken, id, editSatellite);
 
       return response;
     },

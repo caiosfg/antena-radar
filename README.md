@@ -39,3 +39,11 @@
 5. Swagger no endereço:
 
    > `http://localhost:8080/api/documentation`
+
+6. Limpar Database:
+
+   > `php artisan migrate:refresh`
+
+7. Carga de dados:
+
+   > `php artisan db:seed`

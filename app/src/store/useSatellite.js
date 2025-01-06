@@ -30,5 +30,11 @@ export const useSatellite = defineStore("satellite", {
 
       return response;
     },
+    async fetchCreateSatellite(newSatellite) {
+      const store = useUserStore();
+      const response = await createSatellite(store.getToken, newSatellite);
+
+      return response;
+    },
   },
 });

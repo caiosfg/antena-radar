@@ -26,6 +26,11 @@ export const updateSatellite = async (token, id, satellite) => {
   return data;
 };
 
-export const createSatellite = (satellite) => api.post(resource, satellite);
+export const createSatellite = async (token, satellite) => {
+  axios.defaults.headers.common = { Authorization: `bearer ${token}` };
+  const { data } = await axios.post(resource, satellite);
+
+  return data;
+};
 
 export const removeSatellite = (id) => api.delete(`${resource}/${id}`);

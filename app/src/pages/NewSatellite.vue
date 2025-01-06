@@ -76,7 +76,7 @@
 
 <script setup>
 import { reactive, ref, onMounted } from "vue";
-import { createSatellite } from "../api/satellite-api";
+import { useSatellite } from "../store/useSatellite";
 import { useRouter } from "vue-router";
 import GoogleMaps from "@/components/GoogleMaps.vue";
 import axios from "axios";
@@ -95,13 +95,15 @@ const newSatellite = reactive({
     height: '',
 })
 
+const store = useSatellite();
+
 const router = useRouter();
 const imageSrc = ref([]);
 const selectedFiles = ref([]);
 const getUfsIbge = ref([]);
 
 async function addSatellite() {
-    const result = await createSatellite(newSatellite);
+    const result = await store.fetchCreateSatellite(newSatellite);
 
     if (result) {
         router.push({ path: '/antenas' })

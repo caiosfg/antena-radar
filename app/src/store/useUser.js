@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { logout } from "../api/auth-api";
+import { csrfCookie, login, getUser, register } from "../api/auth-api";
 
 export const useUserStore = defineStore("user", {
   state: () => ({ token: null, name: null, email: null }),
@@ -31,7 +32,26 @@ export const useUserStore = defineStore("user", {
     },
     async handleLogout() {
       const response = await logout();
+      this.clearAll();
       return response;
+    },
+    async fetchUser() {
+      const response = await getUser();
+      return response;
+    },
+    async handleLogin(credentials) {
+      await csrfCookie();
+      const { data } = await login(credentials);
+      if (data) {
+        this.setToken(data.token);
+        this.setEmail(data.user.email);
+        this.setUser(data.user.name);
+      }
+      return data;
+    },
+    async handleRegister(newUser) {
+      const response = await register(newUser);
+      console.log("🚀 ~ handleRegister ~ response:", response);
     },
   },
 });

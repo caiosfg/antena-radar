@@ -14,21 +14,21 @@
 
 <script setup>
 import { onMounted, ref } from "vue";
-import { allSatellites } from "../api/satellite-api";
+import { useSatellite } from "../store/useSatellite"
 import 'vue3-carousel/dist/carousel.css';
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
 import Satellite from "../components/satellite/Satellite.vue"
 
-const satellites = ref([]);
+const satellites = ref();
 const config = {
     itemsToShow: 1.5
 }
 
+const store = useSatellite();
 
 onMounted(async () => {
-    const { data } = await allSatellites()
-    satellites.value = data.data;
-    console.log('data here', data);
+    const allSatellites = await store.fetchAllSatellites();
+    satellites.value = allSatellites;
 })
 
 

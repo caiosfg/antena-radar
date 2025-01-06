@@ -1,8 +1,16 @@
-import api from "./api";
+import axios from "axios";
 
-const resource = "/api/v1/satellite";
+axios.defaults.withCredentials = true;
+axios.defaults.withXSRFToken = true;
 
-export const allSatellites = () => api.get(resource);
+const resource = "http://localhost:8080/api/v1/satellite";
+
+export const allSatellites = async (token) => {
+  axios.defaults.headers.common = { Authorization: `bearer ${token}` };
+  const { data } = await axios.get(resource);
+
+  return data;
+};
 
 export const getSatelliteById = (id) => api.get(`${resource}/${id}`);
 

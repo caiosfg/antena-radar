@@ -28,14 +28,10 @@ const userName = computed(() => store.getUser)
 
 onMounted(() => {
     handleLogout()
-    store.clearAll()
-
 })
 
 
 async function handleLogout() {
-    const data = await store.handleLogout();
-    console.log("🚀 ~ handleLogout ~ data:", data)
-
+    await store.handleLogout();
 }
 </script>

@@ -36,5 +36,11 @@ export const useSatellite = defineStore("satellite", {
 
       return response;
     },
+    async fetchSatelliteRemoveId(id) {
+      const store = useUserStore();
+      const response = await removeSatellite(store.getToken, id);
+
+      return response;
+    },
   },
 });

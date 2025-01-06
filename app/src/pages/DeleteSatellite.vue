@@ -34,9 +34,8 @@
 
 <script setup>
 import { reactive, onMounted } from "vue";
-import { getSatelliteById, removeSatellite } from "../api/satellite-api"
+import { useSatellite } from "../store/useSatellite"
 import { useRoute, useRouter } from "vue-router";
-
 
 const editSatellite = reactive({
     name: '',
@@ -51,9 +50,10 @@ const editSatellite = reactive({
     height: '',
 })
 
+const store = useSatellite();
 
 onMounted(async () => {
-    const { data: { data } } = await getSatelliteById(route.params.id)
+    const { data } = await store.fetchSatellitesId(route.params.id)
 
     if (data) {
         editSatellite.name = data.name;
@@ -75,9 +75,10 @@ const router = useRouter();
 
 
 async function deleteSatellite() {
-    const result = await removeSatellite(route.params.id);
+    const result = await store.fetchSatelliteRemoveId(route.params.id);
+    console.log("🚀 ~ deleteSatellite ~ result:", result)
 
-    if (result) {
+    if (result === 204) {
         router.push({ path: '/antenas' })
     }
 
